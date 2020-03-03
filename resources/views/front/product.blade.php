@@ -38,27 +38,18 @@
                                 <div class="modal-content">
                                     <div class="modal-body">
                                         <div class="carousel-inner">
+                                            @foreach ($data as $item)
+                                            @if ($item->id == 1)
                                             <div class="carousel-item active">
-                                                <img src="assets/images/background1.jpg" alt="" title="">
-                                            </div>
+                                            @else
                                             <div class="carousel-item">
-                                                <img src="assets/images/background2.jpg" alt="" title="">
+                                            @endif
+
+                                                <img src="{{$item->img}}" alt="" title="">
                                             </div>
-                                            <div class="carousel-item">
-                                                <img src="assets/images/background3.jpg" alt="" title="">
-                                            </div><div class="carousel-item">
-                                                <img src="assets/images/background4.jpg" alt="" title="">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="assets/images/background5.jpg" alt="" title="">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="assets/images/background6.jpg" alt="" title=""></div>
-                                                <div class="carousel-item"><img src="assets/images/background7.jpg" alt="" title="">
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <img src="assets/images/background8.jpg" alt="" title="">
-                                                </div>
+                                            @endforeach
+
+
                                             </div>
                                             <a class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#lb-gallery2-3">
                                                 <span class="mbri-left mbr-iconfont" aria-hidden="true"></span>

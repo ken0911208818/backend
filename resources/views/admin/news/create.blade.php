@@ -19,7 +19,7 @@
       </div>
     <div class="form-group">
       <label for="content">content</label>
-    <input type="text" class="form-control" id="content" name="content" >
+      <textarea type="text" class="form-control" id="content" name="content" cols="30" rows="10"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
@@ -28,4 +28,3 @@
 
 
 @endsection
-

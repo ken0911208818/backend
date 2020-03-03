@@ -8,7 +8,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('auth/product/index');
+        $data = Product::all();
+        return view('admin/product/index',compact('data'));
     }
 
     public function store(Request $request) {
@@ -17,4 +18,9 @@ class ProductController extends Controller
 
         return redirect('/home/product');
     }
+
+    public function create(){
+        return view('admin.product.create');
+    }
+
 }
