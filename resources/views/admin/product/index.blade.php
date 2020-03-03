@@ -14,22 +14,27 @@
         <thead>
             <tr>
                 <th>img</th>
-                <th>title</th>
-                <th  width='80px'></th>
+                <th>kinds</th>
+
+                <th width='80px'></th>
             </tr>
         </thead>
         <tbody>
             @foreach ($data as $item)
             <tr>
                 <td>
-                    <img src="{{$item->img}}" alt="" srcset="" style="width:50px; height=50px;">
+                    <img src="{{$item->img}}" alt="" style="width:50px; height:50px;">
                 </td>
+                <td>{{$item->kinds}}</td>
                 <td>
-                    {{$item->kinds}}
-                </td>
-                <td>
-                    <a href="/home/news/update/{{$item->id}}" class="btn btn-success btn-sm">修改</a>
-                    <a href="" class="btn btn-danger btn-sm">刪除</a>
+                    <a href="/home/product/{{$item->id}}/edit" class="btn btn-success btn-sm">修改</a>
+                    <button class="btn btn-danger btn-sm" onclick="show_confirm({{$item->id}})">刪除</button>
+
+                <form id="news_delete{{$item->id}}" action="/home/product/{{$item->id}}" method="POST" style="display: none;">
+                        
+                        @csrf
+                        @method('DELETE')
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -50,5 +55,20 @@
     $(document).ready(function() {
         $('#example').DataTable();
     } );
+</script>
+<script>
+function show_confirm(id)
+{
+var r=confirm("你要刪除嗎!");
+if (r==true)
+  {
+    document.getElementById('news_delete'+id).submit();
+  }
+else
+  {
+
+  }
+}
+
 </script>
 @endsection

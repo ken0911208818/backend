@@ -32,9 +32,8 @@ Route::group(['middleware' => ['auth'],'prefix'=>'/home'], function () {
     //刪除
     Route::post('/news/delete/{id}', 'NewsController@delete');
 
-    Route::get('/product', 'ProductController@index');
-    Route::post('/product/store', 'ProductController@store');
-    Route::get('/product/create', 'ProductController@create');
+    Route::resource('/product', 'ProductController');
+
 
 });
 

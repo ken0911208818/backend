@@ -7,7 +7,7 @@
 
 <div class="container">
 
-   <form method="post" action="/home/product/store">
+   <form method="POST" action="/home/product">
     @csrf
     <div class="form-group">
       <label for="img">img-url</label>
