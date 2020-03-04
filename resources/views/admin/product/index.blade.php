@@ -15,6 +15,7 @@
             <tr>
                 <th>img</th>
                 <th>kinds</th>
+                <th>sort</th>
 
                 <th width='80px'></th>
             </tr>
@@ -26,12 +27,13 @@
                     <img src="{{$item->img}}" alt="" style="width:50px; height:50px;">
                 </td>
                 <td>{{$item->kinds}}</td>
+                <td>{{$item->sort}}</td>
                 <td>
                     <a href="/home/product/{{$item->id}}/edit" class="btn btn-success btn-sm">修改</a>
                     <button class="btn btn-danger btn-sm" onclick="show_confirm({{$item->id}})">刪除</button>
 
                 <form id="news_delete{{$item->id}}" action="/home/product/{{$item->id}}" method="POST" style="display: none;">
-                        
+
                         @csrf
                         @method('DELETE')
                     </form>
@@ -53,7 +55,9 @@
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#example').DataTable({
+            "order": [ 1, 'desc' ]
+        });
     } );
 </script>
 <script>

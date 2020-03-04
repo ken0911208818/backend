@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class ProductController extends Controller
     {
         //all() 是將所有關於product的資料拿出來
         $data = Product::all();
-        return view('admin.product.index',compact('data'));
+        return view('admin.product.index', compact('data'));
     }
 
     /**
@@ -62,9 +63,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         // where條件式 當ID 等於 $id 的資料 first是指第一筆資料
-        $data = Product::where('id',$id)->first();
+        $data = Product::where('id', $id)->first();
 
-        return view('admin.product.edit',compact('data'));
+        return view('admin.product.edit', compact('data'));
     }
 
     /**
@@ -81,7 +82,7 @@ class ProductController extends Controller
         // $tt = $request->except('_token','_method');
         // where(指定) id =$id 這筆 進行 更新內容($tt)
         // Product::where('id',$id)->update($tt);
-        $data = Product::where('id',$id)->first();
+        $data = Product::where('id', $id)->first();
         // 先做賦值得動作 在做儲存
         $data->img = $request->img;
         $data->kinds = $request->kinds;

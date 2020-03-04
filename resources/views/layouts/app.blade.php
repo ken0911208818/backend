@@ -54,6 +54,9 @@
                                 </form>
                             </div>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/home/muuri">muuri</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

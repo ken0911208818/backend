@@ -13,12 +13,12 @@ class FrontController extends Controller
         return view('front/index');
     }
     public function news()
-    {   $news = DB::table('news')->get();
+    {   $news = DB::table('news')->orderBy('sort','asc')->get();
         return view('front/news',compact('news'));
     }
     public function product()
     {
-        $data = DB::table('product')->get();
+        $data = DB::table('product')->orderBy('sort','desc')->get();
         return view('front/product',compact('data'));
     }
 

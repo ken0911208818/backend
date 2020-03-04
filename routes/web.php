@@ -34,6 +34,6 @@ Route::group(['middleware' => ['auth'],'prefix'=>'/home'], function () {
 
     Route::resource('/product', 'ProductController');
 
-
+    Route::resource('/muuri', 'MuuriController');
 });
 

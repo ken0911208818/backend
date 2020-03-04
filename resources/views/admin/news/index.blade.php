@@ -16,6 +16,7 @@
                 <th>img</th>
                 <th>title</th>
                 <th>content</th>
+                <th>sort</th>
                 <th width='80px'></th>
             </tr>
         </thead>
@@ -23,11 +24,14 @@
             @foreach ($data as $item)
             <tr>
                 <td>
-                    <img src="{{$item->img}}" alt="" srcset="" style="width:50px; height=50px;">
+                <img src="{{$item->img}}" alt="" srcset="" style="width:50px; height=50px;">
                 </td>
                 <td>{{$item->title}}</td>
                 <td>
                     {{$item->content}}
+                </td>
+                <td>
+                    {{$item->sort}}
                 </td>
                 <td>
                     <a href="/home/news/edit/{{$item->id}}" class="btn btn-success btn-sm">修改</a>
@@ -54,7 +58,9 @@
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#example').DataTable({
+            "order": [ 1, 'desc' ]
+        });
     } );
 </script>
 <script>
@@ -67,7 +73,7 @@ if (r==true)
   }
 else
   {
-  
+
   }
 }
 
