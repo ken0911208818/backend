@@ -19,7 +19,7 @@
                         @foreach ($data as $item)
                     <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="{{$item->kinds}}">
                             <div href="#lb-gallery2-3" data-slide-to="{{$item->id - 1}}" data-toggle="modal">
-                                <img src="{{$item->img}}" alt="" title="">
+                                <img src="{{asset('storage/'.$item->img)}}" alt="" title="">
                                     <span class="icon-focus">
                                         </span>
                                 </div>

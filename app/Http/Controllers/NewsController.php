@@ -60,7 +60,6 @@ class NewsController extends Controller
             // 刪除照片
             $old_image = $item->img;
             File::delete(public_path() . $old_image);
-
             $file = $request->file('img');
             $path = $this->fileUpload($file, 'news');
             $requsetData['img'] = $path;

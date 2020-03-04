@@ -7,11 +7,11 @@
 
 <div class="container">
 
-   <form method="POST" action="/home/product">
+   <form method="POST" action="/home/product" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
       <label for="img">img-url</label>
-    <input type="text" class="form-control" id="img" name="img" >
+    <input type="file" class="form-control" id="img" name="img" >
     </div>
     <div class="form-group">
         <label for="kinds">種類</label>

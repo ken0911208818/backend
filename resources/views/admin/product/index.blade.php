@@ -24,7 +24,7 @@
             @foreach ($data as $item)
             <tr>
                 <td>
-                    <img src="{{$item->img}}" alt="" style="width:50px; height:50px;">
+                    <img src="{{asset('storage/'.$item->img)}}" alt="" style="width:50px; height:50px;">
                 </td>
                 <td>{{$item->kinds}}</td>
                 <td>{{$item->sort}}</td>
