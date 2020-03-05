@@ -11,9 +11,13 @@
 
     @csrf
     <div class="form-group">
-      <label for="img">IMG</label>
+      <label for="img">主要照片</label>
     <input type="file" class="form-control" id="img" name="img" >
     </div>
+    <div class="form-group">
+        <label for="newsimg">多張照片</label>
+      <input type="file" class="form-control" id="newsimg" name="newsimg[]" multiple>
+      </div>
     <div class="form-group">
         <label for="title">title</label>
     <input type="text" class="form-control" id="title" name="title" >

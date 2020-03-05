@@ -14,6 +14,8 @@
 Route::get('/', 'FrontController@index');
 Route::get('/news','FrontController@news');
 Route::get('/product','FrontController@product');
+// Route::get('/news/newsimg','FrontController@newsimg');
+Route::get('/newsimg/{id}','FrontController@newsimg');
 Auth::routes();
 
 //prefix=> 共同的路由 用群組的方式可省略不寫 ex /home    >   ex /

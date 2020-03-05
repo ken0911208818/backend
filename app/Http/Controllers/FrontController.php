@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\News;
 
 use DB;
 use App\Product;
@@ -20,6 +21,14 @@ class FrontController extends Controller
     {
         $data = DB::table('product')->orderBy('sort','desc')->get();
         return view('front/product',compact('data'));
+    }
+    public function newsimg($id)    {
+
+
+        // $data = News::where('id',$id)->newsimg;
+        // where 出來是陣列 需要使用first轉成物件
+        $data = News::where('id',$id)->first()->newsimg;
+        return view('front/newsimg',compact('data'));
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 //Request 請求:當資料丟進來時的資料型態
 use App\News;
+use App\Newsimg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -27,9 +28,21 @@ class NewsController extends Controller
             $path = $this->fileUpload($file, 'news');
             $data['img'] = $path;
         }
-
         //save()指將資料表儲存起來
-        News::create($data)->save();
+
+        $news_id = News::create($data);
+
+        if ($request->hasFile('newsimg')) {
+            foreach ($request->newsimg as $item) {
+                $file = $request->file('newsimg');
+                $path = $this->fileUpload($item, 'news');
+                $data['newsimg'] = $path;
+                $newsimg =  new Newsimg;
+                $newsimg ->news_id = $news_id['id'];
+                $newsimg->img_url = $data['newsimg'];
+                $newsimg->save();
+            }
+        }
 
         //redirect 將返回至XX頁面
         return redirect('/home/news/create');
@@ -42,7 +55,8 @@ class NewsController extends Controller
     public function edit($id)
     {
         // $data = News::find($id)->get();
-        $data = News::where('id', $id)->get();
+        $data = News::where('id', $id)->with('newsimg')->first();
+        
         return view('admin/news/edit', compact('data'));
     }
     public function update(Request $request, $id)
@@ -51,10 +65,11 @@ class NewsController extends Controller
         // $tt = $request->except(['_token']);
         // News::where('id', $id)->update($tt);
         // return redirect('/home/news/');
-
+        // ，在做舊圖片刪除 新圖片上傳 再更改資料庫圖片名
         $item = News::find($id);
 
         $requsetData = $request->all();
+        // 先確定有沒有圖片上傳
         if ($request->hasFile('img')) {
 
             // 刪除照片
@@ -63,7 +78,6 @@ class NewsController extends Controller
             $file = $request->file('img');
             $path = $this->fileUpload($file, 'news');
             $requsetData['img'] = $path;
-
         }
 
         $item->update($requsetData);

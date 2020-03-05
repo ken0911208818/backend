@@ -8,6 +8,13 @@ class News extends Model
 {       //一個資料表時不用[]
     protected $table ='news';
     protected $fillable = [
-        'img', 'title', 'content','sort'
+        'id','img', 'title', 'content','sort'
     ];
+
+
+
+    public function newsimg()
+    {
+        return $this->hasMany('App\Newsimg');
+    }
 }
