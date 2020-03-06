@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth'],'prefix'=>'/home'], function () {
     //刪除
     Route::post('/news/delete/{id}', 'NewsController@delete');
 
+    Route::post('/ajax/deletenewsimg', 'NewsController@ajax_delete_newsimg');
+
     Route::resource('/product', 'ProductController');
 
     Route::resource('/muuri', 'MuuriController');

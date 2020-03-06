@@ -56,7 +56,7 @@ class NewsController extends Controller
     {
         // $data = News::find($id)->get();
         $data = News::where('id', $id)->with('newsimg')->first();
-        
+
         return view('admin/news/edit', compact('data'));
     }
     public function update(Request $request, $id)
@@ -80,8 +80,21 @@ class NewsController extends Controller
             $requsetData['img'] = $path;
         }
 
+
+
         $item->update($requsetData);
 
+        if ($request->hasFile('newsimg')) {
+            foreach ($request->newsimg as $item) {
+                $file = $request->file('newsimg');
+                $path = $this->fileUpload($item, 'news');
+                $data['newsimg'] = $path;
+                $newsimg =  new Newsimg;
+                $newsimg ->news_id = $id;
+                $newsimg->img_url = $data['newsimg'];
+                $newsimg->save();
+            }
+        }
         return redirect('/home/news/');
     }
     public function delete($id)
@@ -94,6 +107,18 @@ class NewsController extends Controller
         }
         $data->delete();
         return redirect('/home/news/');
+    }
+
+    public function ajax_delete_newsimg(Request $request)
+    {
+        $newimgid = $request->newsimgid;
+        $data = Newsimg::where('id', $newimgid)->first();
+        $old_image = $data->img_url;
+        if (file_exists(public_path() . $old_image)) {
+            File::delete(public_path() . $old_image);
+        }
+        $data->delete();
+        return 'successful';
     }
 
     private function fileUpload($file, $dir)

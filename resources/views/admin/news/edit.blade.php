@@ -2,7 +2,12 @@
 
 @section('css')
     <style>
-
+            .d-flex .col-2 .btn-danger{
+                position: absolute;
+                border-radius: 50%;
+                top:-15px;
+                right:-5px;
+            }
     </style>
 @endsection
 @section('content')
@@ -26,8 +31,8 @@
             <label for="img">內頁圖片</label>
             <div class="d-flex">
                 @foreach ($data ->newsimg as $item)
-                <div class="col-2">
-                    <button class="btn btn-danger" type="button">X</button>
+                <div class="col-2" data-newsimgid="{{$item->id}}">
+                <button class="btn btn-danger" type="button" data-newsimgid="{{$item->id}}">X</button>
                     <img src="{{$item->img_url}}" alt="" class="img-fluid" width="200px">
                 </div>
                 @endforeach
@@ -36,7 +41,7 @@
 
             <br>
             <label for="img">重新上傳圖片</label>
-            <input type="file" class="form-control" id="img" name="img">
+            <input type="file" class="form-control" id="newsimg" name="newsimg[]" multiple>
         </div>
         <hr>
         <div class="form-group">
@@ -59,4 +64,34 @@
 </div>
 
 
+@endsection
+
+@section('js')
+
+
+<script>
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+    });
+    $('.col-2 .btn-danger').click(function() {
+    let imgid = (this.getAttribute('data-newsimgid'));
+
+    $.ajax({
+                  url: "{{ url('/home/ajax/deletenewsimg') }}",
+                  method: 'post',
+                  data: {
+                     newsimgid: imgid,
+                  },
+                  success: function(result){
+                    $(`.col-2[data-newsimgid=${imgid}]`).remove();
+                  }
+            });
+
+})
+
+
+
+</script>
 @endsection
