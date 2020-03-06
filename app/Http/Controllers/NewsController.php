@@ -99,13 +99,25 @@ class NewsController extends Controller
     }
     public function delete($id)
     {
-
+        // news 圖片資料刪除
         $data = News::where('id', $id)->first();
+
         $old_image = $data->img;
         if (file_exists(public_path() . $old_image)) {
             File::delete(public_path() . $old_image);
         }
         $data->delete();
+
+        // 多張圖片資料刪除
+        $news_img = Newsimg::where('news_id',$id)->get();
+        foreach($news_img as$new_img ){
+
+            $old_image = $new_img->img_url;
+            if (file_exists(public_path() . $old_image)) {
+            File::delete(public_path() . $old_image);
+            $new_img->delete();
+        }
+        }
         return redirect('/home/news/');
     }
 
@@ -119,6 +131,15 @@ class NewsController extends Controller
         }
         $data->delete();
         return 'successful';
+    }
+    public function ajax_newsimg_sort(Request $request)
+    {
+
+        $sort = $request->sort;
+        $id = $request->id;
+        $newsimg = Newsimg::find($id);
+        $newsimg->sort = $sort;
+        $newsimg->save();
     }
 
     private function fileUpload($file, $dir)

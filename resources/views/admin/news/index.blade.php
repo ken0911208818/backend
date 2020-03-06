@@ -62,8 +62,7 @@
             "order": [ 1, 'desc' ]
         });
     } );
-</script>
-<script>
+
 function show_confirm(id)
 {
 var r=confirm("你要刪除嗎!");

@@ -8,7 +8,6 @@
 <div class="container">
 
    <form method="post" action="/home/news/store" enctype="multipart/form-data">
-
     @csrf
     <div class="form-group">
       <label for="img">主要照片</label>

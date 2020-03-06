@@ -30,5 +30,9 @@ class FrontController extends Controller
         $data = News::where('id',$id)->first()->newsimg;
         return view('front/newsimg',compact('data'));
     }
+    public function test()
+    {
+        return view('layouts.app');
+    }
 
 }

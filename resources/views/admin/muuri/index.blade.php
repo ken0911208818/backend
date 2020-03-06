@@ -1,5 +1,4 @@
 @extends('layouts/app');
-@csrf
 
 @section('css')
 <style>
@@ -66,10 +65,10 @@
 
 
 
-    @endsection
+@endsection
 
 
-    @section('js')
+@section('js')
     <script src="https://unpkg.com/muuri@0.8.0/dist/muuri.min.js"></script>
     <script src="https://unpkg.com/web-animations-js@2.3.2/web-animations.min.js"></script>
     <script src="https://unpkg.com/muuri@0.8.0/dist/muuri.min.js"></script>
@@ -80,4 +79,5 @@
             dragEnabled: true
         });
     </script>
-    @endsection
+@endsection
+

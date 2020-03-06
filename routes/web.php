@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'FrontController@index');
+Route::get('/test', 'FrontController@test');
 Route::get('/news','FrontController@news');
 Route::get('/product','FrontController@product');
 // Route::get('/news/newsimg','FrontController@newsimg');
@@ -35,6 +36,7 @@ Route::group(['middleware' => ['auth'],'prefix'=>'/home'], function () {
     Route::post('/news/delete/{id}', 'NewsController@delete');
 
     Route::post('/ajax/deletenewsimg', 'NewsController@ajax_delete_newsimg');
+    Route::post('/ajax_newsimg_sort', 'NewsController@ajax_newsimg_sort');
 
     Route::resource('/product', 'ProductController');
 
