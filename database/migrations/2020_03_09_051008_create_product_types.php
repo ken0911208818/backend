@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSortToProductTable extends Migration
+class CreateProductTypes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class AddSortToProductTable extends Migration
      */
     public function up()
     {
-        Schema::table('product', function (Blueprint $table) {
-            $table->integer('sort')->default(0)->after('kinds');
-            $table->text('title')->after('kinds');
-            $table->text('content')->after('kinds');
+        Schema::create('product_types', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->text('type');
+            $table->integer('sort')->default(0);
+            $table->timestamps();
         });
     }
 
@@ -27,8 +28,6 @@ class AddSortToProductTable extends Migration
      */
     public function down()
     {
-        Schema::table('product', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('product_types');
     }
 }

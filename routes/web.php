@@ -41,5 +41,12 @@ Route::group(['middleware' => ['auth'],'prefix'=>'/home'], function () {
     Route::resource('/product', 'ProductController');
 
     Route::resource('/muuri', 'MuuriController');
+    Route::resource('/ProductType', 'ProductTypesController');
+
+    // summernote
+    // 新增
+    Route::post('/ajax_upload_img', 'UploadImgController@ajax_upload_img');
+    // 刪除
+    Route::post('/ajax_delete_img', 'UploadImgController@ajax_delete_img');
 });
 

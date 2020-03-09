@@ -28,7 +28,7 @@
                 </td>
                 <td>{{$item->title}}</td>
                 <td>
-                    {{$item->content}}
+                    {!!$item->content!!}
                 </td>
                 <td>
                     {{$item->sort}}

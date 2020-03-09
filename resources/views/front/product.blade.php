@@ -1,74 +1,89 @@
-@extends('layouts/nav')
+@extends('layouts.nav')
 @section('content')
-<section class="mbr-gallery mbr-slider-carousel cid-rS3hYJJSXz mt-5" id="gallery2-3">
+<section class="services1 cid-rSHipPxh3m" id="services1-5">
+    <!---->
 
+    <!---->
+    <!--Overlay-->
 
-
+    <!--Container-->
     <div class="container">
-        <div><!-- Filter --><div class="mbr-gallery-filter container gallery-filter-active">
-            <ul buttons="0">
-                <li class="mbr-gallery-filter-all">
-                    <a class="btn btn-md btn-primary-outline active display-7" href="">All</a>
-                </li>
-            </ul>
-        </div><!-- Gallery -->
-        <div class="mbr-gallery-row">
-            <div class="mbr-gallery-layout-default">
-                <div>
-                    <div>
-                        @foreach ($data as $item)
-                    <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="{{$item->kinds}}">
-                            <div href="#lb-gallery2-3" data-slide-to="{{$item->id - 1}}" data-toggle="modal">
-                                <img src="{{asset('storage/'.$item->img)}}" alt="" title="">
-                                    <span class="icon-focus">
-                                        </span>
-                                </div>
-                            </div>
-                        @endforeach
-
-
+        <div class="row justify-content-center" style="padding:100px;">
+            <!--Titles-->
+            <div class="title pb-5 col-12">
+                <div class="mbr-section-btn align-left">
+                    @foreach ($data as $item)
+                    <a href="#"  onclick="kinds({{$item->type->id}})" class="btn btn-warning-outline display-4" >
+                        {{$item->type->type}}
+                    </a>
+                    @endforeach
+                </div>
+            </div>
+            <!--Card-1-->
+            @foreach ($data as $item)
+            <div class="card col-12 col-md-6 p-3 col-lg-4">
+                <div class="card-wrapper">
+                    <div class="card-img">
+                        <img src="{{asset('/storage/'.$item->img)}}" alt="Mobirise">
+                    </div>
+                    <div class="card-box">
+                        <h4 class="card-title mbr-fonts-style display-5">
+                            {{$item->title}}
+                        </h4>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            {{$item->content}}
+                        </p>
+                        <!--Btn-->
+                        <div class="mbr-section-btn align-left">
+                            <a href="https://mobirise.co" class="btn btn-warning-outline display-4">
+                                {{$item->type->type}}
+                            </a>
+                        </div>
                     </div>
                 </div>
-                    <div class="clearfix">
-                    </div>
             </div>
-        </div><!-- Lightbox -->
-                        <div data-app-prevent-settings="" class="mbr-slider modal fade carousel slide" tabindex="-1" data-keyboard="true" data-interval="false" id="lb-gallery2-3">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <div class="carousel-inner">
-                                            @foreach ($data as $item)
-                                            @if ($item->id == 1)
-                                            <div class="carousel-item active">
-                                            @else
-                                            <div class="carousel-item">
-                                            @endif
-
-                                                <img src="{{$item->img}}" alt="" title="">
-                                            </div>
-                                            @endforeach
+            @endforeach
 
 
-                                            </div>
-                                            <a class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#lb-gallery2-3">
-                                                <span class="mbri-left mbr-iconfont" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control carousel-control-next" role="button" data-slide="next" href="#lb-gallery2-3">
-                                                <span class="mbri-right mbr-iconfont" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                            <a class="close" href="#" role="button" data-dismiss="modal">
-                                                <span class="sr-only">Close</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+        </div>
     </div>
-
 </section>
+@endsection
+@section('js')
+<script>
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+    });
+    // $('#kinds').click(function(){
+    //     // 將綁在按鈕上的data-newsimgid的值取出
+    //     let kinds = (this.getAttribute('data-newsimgid'));
+    //     console.log('aa');
+
+    //     $.ajax({
+    //         //   傳送路徑
+    //           url: "",
+    //         //   方法
+    //           method: 'post',
+    //         //   資料
+    //           data: {
+    //              newsimgid: imgid,
+    //           },
+    //         //   如果成功回傳
+    //           success: function(result){
+    //             //   將col-2綁上ID 指定的ID做remove(移除)
+    //             $(`.col-2[data-newsimgid=${imgid}]`).remove();
+    //           }
+    //     });
+
+    // })
+
+    function kinds(kinds) {
+        $('.card').remove()
+        $('.card').show()
+    }
+</script>
 
 @endsection

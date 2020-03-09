@@ -9,6 +9,7 @@
         right: -5px;
     }
 </style>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
 @endsection
 @section('content')
 
@@ -66,6 +67,8 @@
 @endsection
 
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
+<script src="{{ asset('js/summernote-zh-TW.js') }}" ></script>
 <script>
     $.ajaxSetup({
     headers: {
@@ -75,7 +78,7 @@
 
     function ajax_newsimg_sort(aaa,bbb){
         let sort = aaa.value
-        let id = bbb 
+        let id = bbb
         $.ajax({
             //   傳送路徑
               url: "{{ url('/home/ajax_newsimg_sort')}}",
@@ -114,7 +117,69 @@
         });
 
     })
+    $('#content').summernote({
+        placeholder: 'Hello Bootstrap 4',
+        tabsize: 2,
+        height: 300,
+        minHeight: 300,
+        lang: 'zh-TW',
+        callbacks: {
+                    onImageUpload: function(files) {
+                        for(let i=0; i < files.length; i++) {
+                            $.upload(files[i]);
+                        }
+                    },
+                    onMediaDelete : function(target) {
+                        $.delete(target[0].getAttribute("src"));
+                    }
+                },
+      });
 
+      $.upload = function (file) {
+                let out = new FormData();
+                out.append('file', file, file.name);
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    method: 'POST',
+                    url: '/home/ajax_upload_img',
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    data: out,
+                    success: function (img) {
+                        $('#content').summernote('insertImage', img);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error(textStatus + " " + errorThrown);
+                    }
+                });
+            };
+
+            $.delete = function (file_link) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    method: 'POST',
+                    url: '/home/ajax_delete_img',
+                    data: {file_link:file_link},
+                    success: function (img) {
+                        console.log("delete:",img);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error(textStatus + " " + errorThrown);
+                    }
+                });
+            }
 
 
 

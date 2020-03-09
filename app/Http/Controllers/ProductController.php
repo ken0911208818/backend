@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Product;
+use App\ProductTypes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 // php artisan storage:link
@@ -16,8 +17,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //all() 是將所有關於product的資料拿出來
-        $data = Product::all();
+        //order('欄位','排序方式')記得一定要加->get()
+        $data = Product::orderBy('sort','desc')->get();
         return view('admin.product.index', compact('data'));
     }
 
@@ -29,7 +30,8 @@ class ProductController extends Controller
     public function create()
     {
         // 回傳新增頁面
-        return view('admin.product.create');
+        $type =ProductTypes::all();
+        return view('admin.product.create',compact('type'));
     }
 
     /**
@@ -77,8 +79,8 @@ class ProductController extends Controller
     {
         // where條件式 當ID 等於 $id 的資料 first是指第一筆資料
         $data = Product::where('id', $id)->first();
-
-        return view('admin.product.edit', compact('data'));
+        $type = ProductTypes::all();
+        return view('admin.product.edit', compact('data'),compact('type'));
     }
 
     /**

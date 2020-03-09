@@ -19,7 +19,7 @@ class FrontController extends Controller
     }
     public function product()
     {
-        $data = DB::table('product')->orderBy('sort','desc')->get();
+        $data = Product::orderBy('sort','desc')->get();
         return view('front/product',compact('data'));
     }
     public function newsimg($id)    {
