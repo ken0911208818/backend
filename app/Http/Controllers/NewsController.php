@@ -37,8 +37,8 @@ class NewsController extends Controller
                 $file = $request->file('newsimg');
                 $path = $this->fileUpload($item, 'news');
                 $data['newsimg'] = $path;
-                $newsimg =  new Newsimg;
-                $newsimg ->news_id = $news_id['id'];
+                $newsimg = new Newsimg;
+                $newsimg->news_id = $news_id['id'];
                 $newsimg->img_url = $data['newsimg'];
                 $newsimg->save();
             }
@@ -80,8 +80,6 @@ class NewsController extends Controller
             $requsetData['img'] = $path;
         }
 
-
-
         $item->update($requsetData);
 
         if ($request->hasFile('newsimg')) {
@@ -89,8 +87,8 @@ class NewsController extends Controller
                 $file = $request->file('newsimg');
                 $path = $this->fileUpload($item, 'news');
                 $data['newsimg'] = $path;
-                $newsimg =  new Newsimg;
-                $newsimg ->news_id = $id;
+                $newsimg = new Newsimg;
+                $newsimg->news_id = $id;
                 $newsimg->img_url = $data['newsimg'];
                 $newsimg->save();
             }
@@ -109,14 +107,14 @@ class NewsController extends Controller
         $data->delete();
 
         // 多張圖片資料刪除
-        $news_img = Newsimg::where('news_id',$id)->get();
-        foreach($news_img as$new_img ){
+        $news_img = Newsimg::where('news_id', $id)->get();
+        foreach ($news_img as $new_img) {
 
             $old_image = $new_img->img_url;
             if (file_exists(public_path() . $old_image)) {
-            File::delete(public_path() . $old_image);
-            $new_img->delete();
-        }
+                File::delete(public_path() . $old_image);
+                $new_img->delete();
+            }
         }
         return redirect('/home/news/');
     }

@@ -38,7 +38,7 @@
 @endsection
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
-<script src="{{ asset('js/summernote-zh-TW.js') }}" ></script>
+<script src="{{ asset('js/summernote-zh-TW.js') }}"></script>
 <script>
     $('#content').summernote({
         placeholder: 'Hello Bootstrap 4',
