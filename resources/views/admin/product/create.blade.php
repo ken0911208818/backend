@@ -19,9 +19,7 @@
             <select name="kinds">
                     @foreach ($type as $item)
                         <option value="{{$item->id}}">{{$item->type}}</option>
-                        <form id="news_delete{{$item->id}}" action="/home/news/delete/{{$item->id}}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                        
                     @endforeach                　
             </select>
         </div>

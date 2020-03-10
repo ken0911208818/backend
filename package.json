@@ -25,5 +25,8 @@
     },
     "dependencies": {
         "muuri": "^0.8.0"
+    },
+    "optionalDependencies": {
+        "fsevents": "^2.1.2"
     }
 }

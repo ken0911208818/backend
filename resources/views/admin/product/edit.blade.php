@@ -10,9 +10,8 @@
     <form method="post" action="/home/product/{{$data->id}}" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
-        {{$data->kinds}}
-        <hr>
-        {{$type}}
+
+        
         <div class="form-group">
             <label for="img">現在圖片</label>
             <img src="{{asset('storage/'.$data->img)}}" alt="" srcset="" class="img-fluid" width="200px">

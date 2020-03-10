@@ -50,6 +50,13 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="" class="col-md-4 col-form-label text-md-right">認證</label>
+
+                            <div class="col-md-6">
+                                {!! ReCaptcha::htmlFormSnippet() !!}
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">

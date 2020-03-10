@@ -28,6 +28,9 @@
                 <td>
                     <img src="{{asset('storage/'.$item->img)}}" alt="" style="width:50px; height:50px;">
                 </td>
+                @if ($item->type)
+
+                @endif
                 <td>{{$item->type->type}}</td>
                 <td>{{$item->sort}}</td>
                 <td>{{$item->title}}</td>
