@@ -15,6 +15,7 @@ Route::get('/', 'FrontController@index');
 Route::get('/test', 'FrontController@test');
 Route::get('/news','FrontController@news');
 Route::get('/product','FrontController@product');
+Route::get('/contentus','FrontController@contentus');
 // Route::get('/news/newsimg','FrontController@newsimg');
 Route::get('/newsimg/{id}','FrontController@newsimg');
 Auth::routes();

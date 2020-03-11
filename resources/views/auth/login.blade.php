@@ -18,6 +18,7 @@
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
+                                {{ $message }}
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -35,6 +36,7 @@
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
+                                    {{$message}}
                                 @enderror
                             </div>
                         </div>
@@ -54,7 +56,13 @@
                             <label for="" class="col-md-4 col-form-label text-md-right">認證</label>
 
                             <div class="col-md-6">
-                                {!! ReCaptcha::htmlFormSnippet() !!}
+                                <input id="response" type="text" class="form-control @error('g-recaptcha-response') is-invalid @enderror" name="response"  autocomplete="current-response" style="display:none">
+                                {!! htmlFormSnippet() !!}
+                                @error('g-recaptcha-response')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
 

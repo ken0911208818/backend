@@ -34,5 +34,9 @@ class FrontController extends Controller
     {
         return view('layouts.app');
     }
+    public function contentus()
+    {
 
+        return view('front/contentus');
+    }
 }

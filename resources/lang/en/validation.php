@@ -147,5 +147,5 @@ return [
     */
 
     'attributes' => [],
-
+    'recaptcha' => '記得打勾勾',
 ];
