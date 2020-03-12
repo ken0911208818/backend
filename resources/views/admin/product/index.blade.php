@@ -18,7 +18,7 @@
                 <th>sort</th>
                 <th>title</th>
                 <th>content</th>
-
+                <th>price</th>
                 <th width='80px'></th>
             </tr>
         </thead>
@@ -35,6 +35,7 @@
                 <td>{{$item->sort}}</td>
                 <td>{{$item->title}}</td>
                 <td>{{$item->content}}</td>
+                <td>{{$item->price}}</td>
                 <td>
                     <a href="/home/product/{{$item->id}}/edit" class="btn btn-success btn-sm">修改</a>
                     <button class="btn btn-danger btn-sm" onclick="show_confirm({{$item->id}})">刪除</button>

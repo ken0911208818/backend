@@ -34,11 +34,15 @@
                             {{$item->content}}
                         </p>
                         <!--Btn-->
+                    <form action="product_deatil/{{$item->id}}" method="post">
+                        @csrf
                         <div class="mbr-section-btn align-left">
-                            <a href="https://mobirise.co" class="btn btn-warning-outline display-4">
+                            <button href="/add_cart" class="btn btn-warning-outline display-4">
                                 {{$item->type->type}}
-                            </a>
+                            </button>
                         </div>
+                        </form>
+
                     </div>
                 </div>
             </div>

@@ -17,6 +17,7 @@ class AddSortToProductTable extends Migration
             $table->integer('sort')->default(0)->after('kinds');
             $table->text('title')->after('kinds');
             $table->text('content')->after('kinds');
+            $table->string('price')->after('kinds');
         });
     }
 

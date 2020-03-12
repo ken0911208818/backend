@@ -57,7 +57,7 @@
 
                             <div class="col-md-6">
                                 <input id="response" type="text" class="form-control @error('g-recaptcha-response') is-invalid @enderror" name="response"  autocomplete="current-response" style="display:none">
-                                {!! htmlFormSnippet() !!}
+                                {!! ReCaptcha::htmlFormSnippet() !!}
                                 @error('g-recaptcha-response')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

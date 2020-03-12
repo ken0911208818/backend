@@ -34,17 +34,21 @@
 
     <div class="container" style="margin-top:100px;">
         <div class="media-container-row">
-            <div class="col-6"></div>
             <div class="col-6">
+                <img src="{{asset('/storage/'.$data->img)}}" alt="" srcset="" class="img-fluid">
+            </div>
+            <div class="col-6">
+
                 <div class="product-title">
-                    <div class="title"><h2>Redmi Note 8T</h2>
+                    <div class="title">
+                        <h2>{{$data->title}}</h2>
                     </div>
                     <div class="content pt-3">
                         <span id="capacity">3GB+32GB</span>
                         <span id="color">月影灰</span>
                     </div>
                     <div class="cost pt-3">
-                        NT$4,599
+                        {{$data->price}}
                     </div>
                 </div>
                 <div class="product-tips pt-3">雙倍該商品可享受雙倍積分</div>
@@ -82,7 +86,7 @@
                     <button class="min button">
                         -
                     </button>
-                    <input type="text" name="qty" id="qty" maxlength="12"/>
+                    <input type="text" name="qty" id="qty" maxlength="12" />
                     <button class="plus button">
                         +
                     </button>
@@ -102,9 +106,14 @@
                         </span>
                     </div>
                 </div>
-                <input id="color3" type="text" name="" value="">
-                <input id="capacity3" type="text" name="" value="">
-                <button class="mt-3">立即購買</button>
+            <form action="/add_cart/{{$data->id}}" method="post">
+                    @csrf
+                    <input id="color3" type="text" name="color" value="" hidden>
+                    <input id="capacity3" type="text" name="capacity" value="" hidden>
+                    <input id="qty1" type="text" name="qty1" value="" hidden>
+                    <button class="mt-3">立即購買</button>
+                </form>
+
 
             </div>
         </div>
@@ -151,6 +160,7 @@
         j(addInput).val(aa);
 
         $('#item').text(aa);
+        $('#qty1').val(aa);
     })
 
     j('.min').on('click', function(){
@@ -159,6 +169,7 @@
         var aa = --n;
         j(addInput).val(aa);
         $('#item').text(aa);
+        $('#qty1').val(aa);
         } else {
         //Otherwise do nothing
         }

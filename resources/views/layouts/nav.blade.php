@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="shortcut icon" href="assets/images/logo2.png" type="image/x-icon">
   <meta name="description" content="">
-
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Home</title>
   <link rel="stylesheet" href="{{asset('assets/web/assets/mobirise-icons/mobirise-icons.css')}}">
   <link rel="stylesheet" href="{{asset('assets/bootstrap/css/bootstrap.min.css')}}">
@@ -74,7 +74,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="/product_deatil">
+                    <a class="nav-link link text-white display-4" href="/cart_total">
                         <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
                         購物車頁面
                     </a>

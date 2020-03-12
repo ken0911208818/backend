@@ -18,9 +18,10 @@ Route::get('/product','FrontController@product');
 Route::get('/contentus','FrontController@contentus');
 // Route::get('/news/newsimg','FrontController@newsimg');
 Route::get('/newsimg/{id}','FrontController@newsimg');
-Route::get('/product_deatil','FrontController@product_deatil');
-Route::get('/add_cart','FrontController@add_cart');
-Route::get('/cart_total','FrontController@cart_total');
+Route::post('/product_deatil/{product_id}','FrontController@product_deatil');
+Route::post('/add_cart/{product_id}','FrontController@add_cart');
+Route::get('/cart_total','FrontController@cart_total');//購物車裡所有東西的頁面
+Route::post('/delete_cart','FrontController@delete_cart');
 Auth::routes();
 
 //prefix=> 共同的路由 用群組的方式可省略不寫 ex /home    >   ex /

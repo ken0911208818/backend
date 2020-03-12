@@ -6,6 +6,7 @@ use App\News;
 use App\Product;
 use Darryldecode\Cart\Cart;
 use DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FrontController extends Controller
@@ -40,14 +41,16 @@ class FrontController extends Controller
 
         return view('front/contentus');
     }
-    public function product_deatil()
+    public function product_deatil($Product_id)
     {
-        return view('front.product_deatil');
+        $data = Product::find($Product_id);
+        return view('front.product_deatil',compact('data'));
     }
-    public function add_cart()
+    public function add_cart(Request $request,$Product_id)
     {
+        $cartData = $request->all();
         $sessionKey = Auth::id();
-        $Product = Product::find(1); // assuming you have a Product model with id, name, description & price
+        $Product = Product::find($Product_id); // assuming you have a Product model with id, name, description & price
         $rowId = 456; // generate a unique() row ID
         $userID = 2; // the user ID to bind the cart contents
 
@@ -56,15 +59,24 @@ class FrontController extends Controller
             'id' => $rowId,
             'name' => $Product->title,
             'price' => $Product->price,
-            'quantity' => 4,
+            'quantity' => $cartData['qty1'],
             'attributes' => array(),
             'associatedModel' => $Product,
         ));
+        return view('front/index');
     }
     public function cart_total()
     {
         $sessionKey = Auth::id();
         $items = \Cart::session($sessionKey)->getContent();
-        dd($items);
+        return view('front.cart_total',compact('items'));
+    }
+    public function delete_cart(Request $request)
+    {
+
+        $rowId =$request->rowId;
+        $sessionKey = Auth::id();
+        \Cart::session($sessionKey)->remove($rowId);
+        
     }
 }

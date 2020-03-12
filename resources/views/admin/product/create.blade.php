@@ -19,7 +19,7 @@
             <select name="kinds">
                     @foreach ($type as $item)
                         <option value="{{$item->id}}">{{$item->type}}</option>
-                        
+
                     @endforeach                　
             </select>
         </div>
@@ -30,6 +30,10 @@
         <div class="form-group">
             <label for="title">title</label>
             <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="form-group">
+            <label for="price">price</label>
+            <input type="text" class="form-control" id="price" name="price">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
