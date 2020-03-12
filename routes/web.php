@@ -18,6 +18,9 @@ Route::get('/product','FrontController@product');
 Route::get('/contentus','FrontController@contentus');
 // Route::get('/news/newsimg','FrontController@newsimg');
 Route::get('/newsimg/{id}','FrontController@newsimg');
+Route::get('/product_deatil','FrontController@product_deatil');
+Route::get('/add_cart','FrontController@add_cart');
+Route::get('/cart_total','FrontController@cart_total');
 Auth::routes();
 
 //prefix=> 共同的路由 用群組的方式可省略不寫 ex /home    >   ex /
@@ -43,6 +46,7 @@ Route::group(['middleware' => ['auth'],'prefix'=>'/home'], function () {
 
     Route::resource('/muuri', 'MuuriController');
     Route::resource('/ProductType', 'ProductTypesController');
+    Route::resource('/contentus', 'ContentUsController');
 
     // summernote
     // 新增
