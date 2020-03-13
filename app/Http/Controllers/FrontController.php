@@ -56,7 +56,7 @@ class FrontController extends Controller
 
 // add the product to cart
         \Cart::session($sessionKey)->add(array(
-            'id' => $rowId,
+            'id' => $Product->id,
             'name' => $Product->title,
             'price' => $Product->price,
             'quantity' => $cartData['qty1'],
@@ -77,6 +77,6 @@ class FrontController extends Controller
         $rowId =$request->rowId;
         $sessionKey = Auth::id();
         \Cart::session($sessionKey)->remove($rowId);
-        
+
     }
 }

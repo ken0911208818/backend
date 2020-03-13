@@ -110,7 +110,7 @@
                     @csrf
                     <input id="color3" type="text" name="color" value="" hidden>
                     <input id="capacity3" type="text" name="capacity" value="" hidden>
-                    <input id="qty1" type="text" name="qty1" value="" hidden>
+                    <input id="qty1" type="text" name="qty1" value="1" hidden>
                     <button class="mt-3">立即購買</button>
                 </form>
 
