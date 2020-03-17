@@ -16,6 +16,14 @@
 
 <script>
     export default {
+        props: [
+            "cartItem"
+        ],
+        data: function (){
+            return{
+                cart: this.cartItem
+            }
+        },
         mounted() {
             console.log('Component mounted.')
         }

@@ -119,7 +119,7 @@
                 <div class="Cart__headerGrid">單價</div>
                 <div class="Cart__headerGrid">數量</div>
                 <div class="Cart__headerGrid">小計</div>
-                <div class="Cart__headerGrid">刪除</div>
+
             </div>
             @foreach ($items as $item)
 
@@ -133,22 +133,46 @@
                 <div class="Cart__productGrid Cart__productPrice d-flex justify-content-center">${{$item->price}}</div>
                 <div
                     class="Cart__productGrid Cart__productQuantity d-flex justify-content-center alitem-content-center">
-                    <button class="btn1 btn btn-primary" style="padding: 5px" data-cartid="{{$item->id}}">-</button>
+
                     <span class="">{{$item->quantity}}</span>
-                    <button class="btn2 btn btn-primary" style="padding: 5px" data-cartid="{{$item->id}}">+</button>
+
                 </div>
                 <div class="Cart__productGrid Cart__productTotal d-flex justify-content-center">
                     {{$item->price * $item->quantity}}</div>
-                <div class="Cart__productGrid Cart__productDel d-flex justify-content-center">
-                    <button class="btn btn-danger" style="padding: 5px" type="button"
-                        data-cartid="{{$item->id}}">X</button>
-                </div>
             </div>
             @endforeach
-
+            <form action="/cart_check" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="QRKoMAD9d5BXOvdqcV9DL0fiSM9bKmXsebt5JCXNFQLM3AZlcIzqFy7HmsSDz+jabviuiTOn7SdNdS0S9yIGSVKWGO4fiDlwLI35rOk6lf8KIxs4qLxILClhToqs2nLo">
+                @csrf
+                <div class="row">
+                    <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out the form!</div>
+                    <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
+                    </div>
+                </div>
+                <div class="dragArea ">
+                    <div class="col-md-4  form-group" data-for="Recipient_name">
+                        <label for="Recipient_name" class="form-control-label mbr-fonts-style display-7">name</label>
+                        <input type="text" name="Recipient_name" data-form-field="Name" required="required" class="form-control display-7" id="Recipient_name">
+                    </div>
+                    <div class="col-md-4  form-group" data-for="email">
+                        <label for="Recipient_phone" class="form-control-label mbr-fonts-style display-7">phone</label>
+                        <input type="text" name="Recipient_phone" data-form-field="Email" required="required" class="form-control display-7" id="Recipient_phone">
+                    </div>
+                    <div data-for="phone" class="col-md-4  form-group">
+                        <label for="Recipient_address" class="form-control-label mbr-fonts-style display-7">Address</label>
+                        <input type="tel" name="Recipient_address" data-form-field="Phone" class="form-control display-7" id="Recipient_address">
+                    </div>
+                    <div data-for="message" class="col-md-4 form-group">
+                        <label for="shipment_time" class="form-control-label mbr-fonts-style display-7">shipment_time</label>
+                        <input type="text" name="shipment_time" data-form-field="Message" class="form-control display-7" id="shipment_time">
+                    </div>
+                    <div class="col-md-12 input-group-btn align-center">
+                        <button type="submit" class="btn btn-primary btn-form display-4">前往結帳</button>
+                    </div>
+                </div>
+            </form><!---Formbuilder Form--->
 
         </div>
-        <a href="/cart_check" class="btn btn-sm btn-primary " style="width: 120px">前往結帳</a>
+
     </div>
 
 </section>
@@ -191,51 +215,29 @@
 
 
     //加減數量
-    $('.Cart__productGrid .btn1').click(function(){
-
+    $('.Cart__productGrid .btn btn-primary').click(function(){
+        console.log('aa');
 
     // 將綁在按鈕上的data-newsimgid的值取出
     let cartId = (this.getAttribute('data-cartid'));
+    console.log(cartId);
+    // $.ajax({
+    //     //   傳送路徑
+    //     url: "{{ url('/delete_cart') }}",
+    //     //   方法
+    //     method: 'post',
+    //     //   資料
+    //     data: {
+    //         rowId:cartId,
+    //     },
+    //     //   如果成功回傳
+    //     success: function(result){
+    //         //   將col-2綁上ID 指定的ID做remove(移除)
+    //         $(`.Cart__product[data-cartid=${cartId}]`).remove();
 
-    $.ajax({
-        //   傳送路徑
-        url: "/update_cart/"+cartId,
-        //   方法
-        method: 'post',
-        //   資料
-        data: {
-            qty:-1,
-        },
-        //   如果成功回傳
-        success: function(result){
-            console.log(result);
-
-        }
-    });
+    //     }
+    // });
 
     })
-    $('.Cart__productGrid .btn2').click(function(){
-
-
-// 將綁在按鈕上的data-newsimgid的值取出
-let cartId = (this.getAttribute('data-cartid'));
-
-$.ajax({
-    //   傳送路徑
-    url: "/update_cart/"+cartId,
-    //   方法
-    method: 'post',
-    //   資料
-    data: {
-        qty:1,
-    },
-    //   如果成功回傳
-    success: function(result){
-        console.log(result);
-
-    }
-});
-
-})
 </script>
 @endsection

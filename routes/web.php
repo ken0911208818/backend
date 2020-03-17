@@ -19,9 +19,12 @@ Route::get('/contentus','FrontController@contentus');
 // Route::get('/news/newsimg','FrontController@newsimg');
 Route::get('/newsimg/{id}','FrontController@newsimg');
 Route::post('/product_deatil/{product_id}','FrontController@product_deatil');
-Route::post('/add_cart/{product_id}','FrontController@add_cart');
+Route::post('/add_cart/{product_id}','FrontController@add_cart');//新增購物車的產品
 Route::get('/cart_total','FrontController@cart_total');//購物車裡所有東西的頁面
-Route::post('/delete_cart','FrontController@delete_cart');
+Route::post('/delete_cart','FrontController@delete_cart');//刪除購物車的產品
+Route::post('/update_cart/{product_id}','FrontController@update_cart');//更改數量
+Route::get('/cart_check','FrontController@cart_check');//前往結帳頁
+Route::post('/cart_check','FrontController@post_cart_check');//成立訂單
 Auth::routes();
 
 //prefix=> 共同的路由 用群組的方式可省略不寫 ex /home    >   ex /

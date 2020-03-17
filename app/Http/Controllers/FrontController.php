@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\News;
+use App\Order;
+use App\Order_detail;
 use App\Product;
 use Darryldecode\Cart\Cart;
-use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -77,6 +79,58 @@ class FrontController extends Controller
         $rowId =$request->rowId;
         $sessionKey = Auth::id();
         \Cart::session($sessionKey)->remove($rowId);
+
+    }
+    public function update_cart(Request $request ,$product_id)
+    {
+        $sessionKey = Auth::id();
+        
+        \Cart::session($sessionKey)->update($product_id, array(
+            'quantity' => $request->qty, // so if the current product has a quantity of 4, another 2 will be added so this will result to 6
+          ));
+        return 'sussful';
+    }
+    public function cart_check()
+    {
+        // $data = Order::with('order_detail')->get();
+        // dd($data);
+        $sessionKey = Auth::id();
+        $items = \Cart::session($sessionKey)->getContent();
+        return view('front.cart_check',compact('items'));
+
+    }
+    public function post_cart_check(Request $request)
+    {
+        // $sessionKey = Auth::id();
+        // $items = \Cart::session($sessionKey)->getContent();
+        // dd($items);
+
+        $Recipient_name = $request->Recipient_name;
+        $Recipient_phone = $request->Recipient_phone;
+        $Recipient_address = $request->Recipient_address;
+        $shipment_time = $request->shipment_time;
+        $order = new Order();
+        $sessionKey = Auth::id();
+        //主要訂單建立
+        $order->user_id= $sessionKey;
+        $order->Recipient_name = $Recipient_name;
+        $order->Recipient_phone= $Recipient_phone;
+        $order->Recipient_address = $Recipient_address;
+        $order->shipment_time = $shipment_time;
+        $order->totalPrice = \Cart::session($sessionKey)->getTotal();
+        $order->save();
+        //訂單詳細建立
+
+        $items = \Cart::session($sessionKey)->getContent();
+        foreach($items as $row) {
+            $order_detial= new Order_detail();
+            $order_detial->order_id = $order->id;
+            $order_detial->product_id= $row->id;
+            $order_detial->qty = $row->quantity;
+            $order_detial->price =$row->price;
+            $order_detial->save();
+        }
+
 
     }
 }
