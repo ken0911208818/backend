@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\ContentUs;
+use App\Mail\OrderShipped;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContentUsController extends Controller
 {
@@ -34,7 +36,8 @@ class ContentUsController extends Controller
      */
     public function store(Request $request)
     {
-        Contentus::create($request->all());
+        $content = Contentus::create($request->all());
+        Mail::to($content->email)->send(new OrderShipped($content));
         return view('front.contentus');
     }
 
