@@ -8,7 +8,7 @@
 
     .Cart__header {
         display: grid;
-        grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 3fr 1fr 1fr 1fr ;
         grid-gap: 2px;
         margin-bottom: 2px;
     }
@@ -20,7 +20,7 @@
 
     .Cart__product {
         display: grid;
-        grid-template-columns: 2fr 7fr 3fr 3fr 3fr 3fr;
+        grid-template-columns: 2fr 7fr 3fr 3fr 3fr ;
         grid-gap: 2px;
         margin-bottom: 2px;
 
@@ -141,6 +141,22 @@
                     {{$item->price * $item->quantity}}</div>
             </div>
             @endforeach
+            <?php
+            $sessionKey = Auth::id();
+            $items = \Cart::session($sessionKey)->getTotal();
+            if($items > 1200){
+
+                $ship_price = 120;
+            }
+            else{
+                $ship_price = 0;
+            }
+            ?>
+            <div class="text-right">
+                <p>運費:{{$ship_price}}</p>
+            <p>總計{{$items + $ship_price}}</p>
+            </div>
+
             <form action="/cart_check" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="QRKoMAD9d5BXOvdqcV9DL0fiSM9bKmXsebt5JCXNFQLM3AZlcIzqFy7HmsSDz+jabviuiTOn7SdNdS0S9yIGSVKWGO4fiDlwLI35rOk6lf8KIxs4qLxILClhToqs2nLo">
                 @csrf
                 <div class="row">

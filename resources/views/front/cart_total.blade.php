@@ -109,10 +109,11 @@
 </style>
 @endsection
 @section('content')
-<example-component cart-item="{{$items}}"></example-component>
+
 <section class="engine"><a href="https://mobirise.info/x">css templates</a></section>
 <section class="features3 cid-rRF3umTBWU" id="features3-7">
-    <div class="container" style="margin-top:100px;">
+    <example-component cart-item="{{$items}}"></example-component>
+    {{-- <div class="container" style="margin-top:100px;">
         <div class="Cart">
             <div class="Cart__header">
                 <div class="Cart__headerGrid">商品</div>
@@ -149,7 +150,7 @@
 
         </div>
         <a href="/cart_check" class="btn btn-sm btn-primary " style="width: 120px">前往結帳</a>
-    </div>
+    </div> --}}
 
 </section>
 @endsection

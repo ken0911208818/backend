@@ -29,10 +29,8 @@
 </head>
 
 <body>
+<div id="app">
     <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-0">
-        <div id="app">
-
-
             <nav
                 class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -82,7 +80,11 @@
                         <li class="nav-item">
                             <a class="nav-link link text-white display-4" href="/cart_total">
                                 <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
-                                購物車頁面
+                                <?php
+                                $sessionKey = Auth::id();
+
+                                $items = \Cart::session($sessionKey)->getContent();?>
+                                cart({{$items ->count()}})
                             </a>
                         </li>
                     </ul>
@@ -94,10 +96,11 @@
                     </div>
                 </div>
             </nav>
-        </div>
-    </section>
-    @yield('content')
 
+    </section>
+
+    @yield('content')
+</div>
 
     <section class="cid-qTkAaeaxX5" id="footer1-2">
 

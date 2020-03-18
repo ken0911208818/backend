@@ -15,12 +15,14 @@ class CreateOrders extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('order_no');
             $table->string('user_id');
             $table->string('Recipient_name');
             $table->string('Recipient_phone');
             $table->string('Recipient_address');
             $table->string('shipment_time')->default('不指定');
             $table->string('totalPrice');
+            $table->string('ship_price');
             $table->string('ship_status')->default('未結帳');
             $table->string('Purchase_status')->default('未送達');
             $table->timestamps();

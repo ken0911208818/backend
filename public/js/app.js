@@ -1924,15 +1924,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["cartItem"],
   data: function data() {
     return {
-      cart: this.cartItem
+      cart: JSON.parse(this.cartItem)
     };
   },
+  methods: {
+    prompt: function prompt(aa) {
+      $('.qty1[data-cartid]').text(aa + 1);
+    }
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
   }
 });
 
@@ -37308,30 +37334,186 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "container", staticStyle: { "margin-top": "100px" } },
+    [
+      _c(
+        "div",
+        { staticClass: "Cart" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._l(_vm.cart, function(item) {
+            return _c(
+              "div",
+              { staticClass: "Cart__product", attrs: { "data-cartid": "" } },
+              [
+                _c(
+                  "div",
+                  { staticClass: "Cart__productGrid Cart__productImg" },
+                  [
+                    _c("img", {
+                      staticClass: "img-fluid",
+                      attrs: {
+                        alt: "",
+                        srcset: "",
+                        src: "../storage/" + item.associatedModel.img
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "Cart__productGrid Cart__productTitle" },
+                  [
+                    _vm._v(
+                      "\n                  " +
+                        _vm._s(item.name) +
+                        "\n              "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "Cart__productGrid Cart__productPrice d-flex justify-content-center"
+                  },
+                  [_vm._v("$ " + _vm._s(item.price))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "Cart__productGrid Cart__productQuantity d-flex justify-content-center alitem-content-center"
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn1 btn btn-primary",
+                        staticStyle: { padding: "5px" },
+                        attrs: { "data-cartid": item.id },
+                        on: {
+                          click: function($event) {
+                            return _vm.prompt(item.quantity)
+                          }
+                        }
+                      },
+                      [_vm._v("-")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "sapn",
+                      {
+                        staticClass: "qty1",
+                        attrs: { "data-cartid": item.id },
+                        model: {
+                          value: item.quantity,
+                          callback: function($$v) {
+                            _vm.$set(item, "quantity", $$v)
+                          },
+                          expression: "item.quantity"
+                        }
+                      },
+                      [_vm._v(_vm._s(item.quantity))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn2 btn btn-primary",
+                        staticStyle: { padding: "5px" },
+                        attrs: { "data-cartid": item.id },
+                        on: {
+                          click: function($event) {
+                            return _vm.prompt(item.quantity)
+                          }
+                        }
+                      },
+                      [_vm._v("+")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "Cart__productGrid Cart__productTotal d-flex justify-content-center"
+                  },
+                  [
+                    _vm._v(
+                      "\n                  " +
+                        _vm._s(item.price * item.quantity)
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(1, true)
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-sm btn-primary ",
+              staticStyle: { width: "120px" },
+              attrs: { href: "/cart_check" }
+            },
+            [_vm._v("前往結帳")]
+          )
+        ],
+        2
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "Cart__header" }, [
+      _c("div", { staticClass: "Cart__headerGrid" }, [_vm._v("商品")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "Cart__headerGrid" }, [_vm._v("單價")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "Cart__headerGrid" }, [_vm._v("數量")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "Cart__headerGrid" }, [_vm._v("小計")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "Cart__headerGrid" }, [_vm._v("刪除")])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "Cart__productGrid Cart__productDel d-flex justify-content-center"
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-danger",
+            staticStyle: { padding: "5px" },
+            attrs: { type: "button", "data-cartid": "" }
+          },
+          [_vm._v("X")]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -49530,7 +49712,10 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    message: 'Hello World!'
+  }
 });
 
 /***/ }),

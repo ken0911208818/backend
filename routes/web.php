@@ -25,6 +25,16 @@ Route::post('/delete_cart','FrontController@delete_cart');//刪除購物車的�
 Route::post('/update_cart/{product_id}','FrontController@update_cart');//更改數量
 Route::get('/cart_check','FrontController@cart_check');//前往結帳頁
 Route::post('/cart_check','FrontController@post_cart_check');//成立訂單
+Route::get('/text_cart_check','FrontController@text_cart_check');
+
+Route::prefix('cart_ecpay')->group(function(){
+
+    //當消費者付款完成後，綠界會將付款結果參數以幕後(Server POST)回傳到該網址。
+    Route::post('notify', 'FrontController@notifyUrl')->name('notify');
+
+    //付款完成後，綠界會將付款結果參數以幕前(Client POST)回傳到該網址
+    Route::post('return', 'FrontController@returnUrl')->name('return');
+});
 Auth::routes();
 
 //prefix=> 共同的路由 用群組的方式可省略不寫 ex /home    >   ex /
