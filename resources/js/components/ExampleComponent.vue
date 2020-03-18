@@ -9,7 +9,7 @@
         <div class="Cart__headerGrid">刪除</div>
       </div>
 
-      <div class="Cart__product" data-cartid="" v-for="item in cart ">
+      <div class="Cart__product" :data-cartid=" item.id" v-for="item in cart ">
                 <div class="Cart__productGrid Cart__productImg">
                     <img class="img-fluid"  alt="" srcset="" :src="'../storage/'+item.associatedModel.img">
                 </div>
@@ -27,7 +27,7 @@
                     {{ item.price * item.quantity}}</div>
                 <div class="Cart__productGrid Cart__productDel d-flex justify-content-center">
                     <button class="btn btn-danger" style="padding: 5px" type="button"
-                        data-cartid="">X</button>
+                        :data-cartid=" item.id ">X</button>
                 </div>
         </div>
         <a href="/cart_check" class="btn btn-sm btn-primary " style="width: 120px">前往結帳</a>

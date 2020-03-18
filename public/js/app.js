@@ -37347,7 +37347,10 @@ var render = function() {
           _vm._l(_vm.cart, function(item) {
             return _c(
               "div",
-              { staticClass: "Cart__product", attrs: { "data-cartid": "" } },
+              {
+                staticClass: "Cart__product",
+                attrs: { "data-cartid": item.id }
+              },
               [
                 _c(
                   "div",
@@ -37455,7 +37458,24 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _vm._m(1, true)
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "Cart__productGrid Cart__productDel d-flex justify-content-center"
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        staticStyle: { padding: "5px" },
+                        attrs: { type: "button", "data-cartid": item.id }
+                      },
+                      [_vm._v("X")]
+                    )
+                  ]
+                )
               ]
             )
           }),
@@ -37491,29 +37511,6 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "Cart__headerGrid" }, [_vm._v("刪除")])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "Cart__productGrid Cart__productDel d-flex justify-content-center"
-      },
-      [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-danger",
-            staticStyle: { padding: "5px" },
-            attrs: { type: "button", "data-cartid": "" }
-          },
-          [_vm._v("X")]
-        )
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -49865,8 +49862,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\user\Documents\GitHub\backend.github.io\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\user\Documents\GitHub\backend.github.io\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ken09\Documents\GitHub\backend.github.io\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ken09\Documents\GitHub\backend.github.io\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

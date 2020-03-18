@@ -109,7 +109,6 @@
 </style>
 @endsection
 @section('content')
-<example-component cart-item="{{$items}}"></example-component>
 <section class="engine"><a href="https://mobirise.info/x">css templates</a></section>
 <section class="features3 cid-rRF3umTBWU" id="features3-7">
     <div class="container" style="margin-top:100px;">
@@ -144,7 +143,7 @@
             <?php
             $sessionKey = Auth::id();
             $items = \Cart::session($sessionKey)->getTotal();
-            if($items > 1200){
+            if($items < 1200){
 
                 $ship_price = 120;
             }

@@ -83,8 +83,20 @@
                                 <?php
                                 $sessionKey = Auth::id();
 
-                                $items = \Cart::session($sessionKey)->getContent();?>
-                                cart({{$items ->count()}})
+                                if($sessionKey != null ){
+                                    $items = \Cart::session($sessionKey)->getContent();
+                                    if($items->count() !=0){
+                                        echo 'car('.$items ->count().')';
+                                    }else{
+                                        echo 'car';
+                                    }
+
+                                }else{
+                                    echo 'car';
+                                }
+
+
+                                ?>
                             </a>
                         </li>
                     </ul>

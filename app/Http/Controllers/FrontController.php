@@ -130,7 +130,7 @@ class FrontController extends Controller
             $ship_price = 120;
         }
         //主要訂單建立
-        $order->order_no = 'ken'.Carbon::now()->format('Ymd').(rand(100, 200));
+
         $order->user_id= $sessionKey;
         $order->Recipient_name = $Recipient_name;
         $order->Recipient_phone= $Recipient_phone;
@@ -139,7 +139,8 @@ class FrontController extends Controller
         $order->ship_price = $ship_price;
         $order->totalPrice = $total;
         $order->save();
-
+        $order->order_no = 'ken'.Carbon::now()->format('Ymd').$order->id;
+        $order->save();
         $order_ary=[];
 
         //訂單詳細建立
@@ -194,7 +195,7 @@ class FrontController extends Controller
             'PaymentMethod' => 'Credit', // ALL, Credit, ATM, WebATM
         ];
         //清空購物車
-        //\Cart::session($sessionKey)->clear();
+        \Cart::session($sessionKey)->clear();
         return $this->checkout->setNotifyUrl(route('notify'))->setReturnUrl(route('return'))->setPostData($formData)->send();
 
     }
@@ -223,7 +224,7 @@ class FrontController extends Controller
                 //付款完成，下面接下來要將購物車訂單狀態改為已付款
                 //目前是顯示所有資料將其DD出來
                 //dd($this->checkoutResponse->collectResponse($serverPost));
-                
+
                 $new_order = Order::where('order_no',$serverPost['MerchantTradeNo'])->first();
                 $new_order ->ship_status = "已結帳";
                 $new_order->save();
